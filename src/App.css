@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: #005d6b;
 }
 
 .App-logo {
@@ -26,6 +27,113 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.edit-box {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all .3s ease;
+}
+.edit-box--active {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+.list-item {
+  text-align: center;
+  margin: 50px auto;
+  padding: 50px;
+  border: 1px solid #17a2b8;
+  border-radius: 20px;
+  box-shadow: 10px 9px 10px rgb(54 54 54 / 30%);
+}
+
+a.Homepage__btn {
+  text-decoration: none;
+  color: #fff;
+  display: inline-block;
+  margin: 20px auto;
+  padding: 12px 32px;
+  border: 1px solid #5c5c5c;
+  position: relative;
+  transition: all .5s;
+  background-color: transparent;
+  letter-spacing: 1.6px;
+  line-height: 1.5;
+}
+
+a.Homepage__btn::before {
+  position: absolute;
+  content: '';
+  display: block;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #5c5c5c;
+  transform: scale(1,1);
+  transform-origin: left center;
+  z-index: -1;
+  transition: transform .45s cubic-bezier(.785, .135, .15, .86);
+}
+a.Homepage__btn:hover::before {
+  transform: scale(0,1);
+  transform-origin: right center;
+}
+a.Homepage__btn:hover {
+  color: #5c5c5c;
+}
+
+.ItemPage__input {
+  padding: 10px 20px;
+  outline: none;
+  border-radius: 20px;
+  border: 1px solid #17a2b8;
+}
+
+.addbtn {
+  padding: 10px 20px;
+  background-color: #17a2b8;
+  margin-left: 10px;
+  margin-top: 20px;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 20px;
+  border: 1px solid #17a2b8;
+  transition: all .5s;
+}
+
+.addbtn:hover {
+  opacity: .8;
+}
+
+.item__btn {
+  padding: 10px 22px;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  margin: 5px 10px;
+  cursor: pointer;
+  position: all .5s linear;
+  box-shadow: 0px 4px 0px 0px rgb(54 54 54 / 70%);
+}
+
+.item__btn:hover {
+  opacity: .85;
+  box-shadow: unset;
+  margin-bottom: 1px;
+}
+
+.btn--delete {
+  background-color: #dc3545;
+}
+.btn--edit {
+  background-color: #ffc107;
 }
 
 @keyframes App-logo-spin {
