@@ -25,10 +25,29 @@ export function deleteItem(payload) {
         }
     )
 }
+
 export function updateItem(payload) {
     return (
         {
             type: types.UPDATE_ITEM_REQUEST,
+            payload
+        }
+    )
+}
+
+export function searchItem(payload) {
+    return (
+        {
+            type: types.SEARCH_ITEM_REQUEST,
+            payload
+        }
+    )
+}
+
+export function paginationItem(payload) {
+    return (
+        {
+            type: types.PAGINATION_ITEM_REQUEST,
             payload
         }
     )

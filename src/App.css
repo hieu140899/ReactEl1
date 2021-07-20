@@ -47,6 +47,7 @@
   border: 1px solid #17a2b8;
   border-radius: 20px;
   box-shadow: 10px 9px 10px rgb(54 54 54 / 30%);
+  min-height: 30vh;
 }
 
 a.Homepage__btn {
@@ -94,7 +95,7 @@ a.Homepage__btn:hover {
   border: 1px solid #17a2b8;
 }
 
-.addbtn {
+.ItemPage__btn {
   padding: 10px 20px;
   background-color: #17a2b8;
   margin-left: 10px;
@@ -107,7 +108,7 @@ a.Homepage__btn:hover {
   transition: all .5s;
 }
 
-.addbtn:hover {
+.ItemPage__btn:hover {
   opacity: .8;
 }
 

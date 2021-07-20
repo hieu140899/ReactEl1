@@ -3,6 +3,8 @@ import getItems from '../fetchAPI/getItems'
 import addItem from '../fetchAPI/addItems'
 import deleteItem from '../fetchAPI/deleteItems'
 import updateItem from '../fetchAPI/updateItems'
+import searchItem from '../fetchAPI/searchItems'
+import paginationItem from '../fetchAPI/panigationItems'
 import * as types from '../constant'
 
 function* getListItem() {
@@ -83,9 +85,54 @@ function* updateItemID(update) {
     }
 }
 
+function* searchItemID(search) {
+    console.log("search item - saga...", search.payload);
+    try {
+        const res  = yield searchItem(search.payload)
+        yield put({
+            type: types.SEARCH_ITEM_SUCCESS,
+            payload:res
+        })
+    } catch (error) {
+        yield put({
+            type: types.SEARCH_ITEM_FAILURE,
+            payload: {
+                errorMessage: error.message
+            }
+        })
+    }
+}
+
+function* paginationItemID(pagination) {
+    console.log("pagination item - saga...", pagination);
+    try {
+        const data = yield getItems()
+
+        const res  = yield paginationItem(pagination.payload)
+        console.log('pagination trong saga...', pagination.payload);
+        yield put({
+            type: types.PAGINATION_ITEM_SUCCESS,
+            payload: {
+                activePage: pagination.payload,
+                listItem: res,
+                totalPage: Math.ceil(data.length / types.LIMIT)
+            }
+        })
+    } catch (error) {
+        yield put({
+            type: types.PAGINATION_ITEM_FAILURE,
+            payload: {
+                errorMessage: error.message
+            }
+        })
+    }
+}
+
 export const ItemSaga = [
     takeEvery(types.GET_ITEM_REQUEST, getListItem),
     takeEvery(types.ADD_ITEM_REQUEST, addListItem),
     takeEvery(types.DELETE_ITEM_REQUEST, deleteItemID),
-    takeEvery(types.UPDATE_ITEM_REQUEST, updateItemID)
+    takeEvery(types.UPDATE_ITEM_REQUEST, updateItemID),
+    takeEvery(types.SEARCH_ITEM_REQUEST, searchItemID),
+    takeEvery(types.PAGINATION_ITEM_REQUEST, paginationItemID)
 ];
