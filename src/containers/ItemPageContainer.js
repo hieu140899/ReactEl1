@@ -16,7 +16,7 @@ class ItemPageContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log("map state to props - container...",state);
+    console.log("map state to props - container...",state.items);
     return {
         items: state.items.listItem,
         activePage: state.items.activePage,
@@ -47,6 +47,10 @@ const mapDispatchToProps = (dispatch) => {
         paginationItem: (data) => {
             console.log("pagination--container...",data);
             dispatch(actions.paginationItem(data))
+        },
+        searchpagItem: (data) => {
+            console.log("searchpag container........",data);
+            dispatch(actions.searchpagItem(data))
         }
     }
 }

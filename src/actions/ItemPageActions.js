@@ -52,3 +52,12 @@ export function paginationItem(payload) {
         }
     )
 }
+
+export function searchpagItem(payload) {
+    return (
+        {
+            type: types.SEARCHPAG_ITEM_REQUEST,
+            payload
+        }
+    )
+}

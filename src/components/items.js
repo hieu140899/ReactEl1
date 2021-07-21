@@ -35,22 +35,42 @@ class Items extends Component {
 
         let pagination = []
 
+        if (this.state.searchName) {
             pagination = page.map((item, key) => {
-            if (item === activePage) {
-                return (
-                    <button style={activeBtn} key={key} onClick={() => this.props.paginationItem(item)}>
-                        {item}
-                    </button>
-                )
-            }
-            else {
-                return (
-                    <button style={paginationBtn} key={key} onClick={() => this.props.paginationItem(item)}>
-                        {item}
-                    </button>
-                )
-            }
-        })
+                if (item === activePage) {
+                    return (
+                        <button style={activeBtn} key={key} onClick={() => this.props.searchpagItem({searchName: this.state.searchName, activePage: item})}>
+                            {item}
+                        </button>
+                    )
+                }
+                else {
+                    return (
+                        <button style={paginationBtn} key={key} onClick={() => this.props.searchpagItem({searchName: this.state.searchName, activePage: item})}>
+                            {item}
+                        </button>
+                    )
+                }
+            })
+        }
+        else {
+            pagination = page.map((item, key) => {
+                if (item === activePage) {
+                    return (
+                        <button style={activeBtn} key={key} onClick={() => this.props.paginationItem(item)}>
+                            {item}
+                        </button>
+                    )
+                }
+                else {
+                    return (
+                        <button style={paginationBtn} key={key} onClick={() => this.props.paginationItem(item)}>
+                            {item}
+                        </button>
+                    )
+                }
+            })
+        }
 
         if (this.props.items) {
             listData = this.props.items.map((item, key) => {
@@ -91,8 +111,9 @@ class Items extends Component {
                         }} className="ItemPage__input" placeholder="Search item..."/>
 
                         <button className="ItemPage__btn" onClick={() => {
-                            this.props.searchItem({
-                                searchName: this.state.searchName
+                            this.props.searchpagItem({
+                                searchName: this.state.searchName,
+                                activePage: 1
                             })
                             // console.log("PROPS",this.props.addName());
                         }}><i className="fa fa-search"></i></button>

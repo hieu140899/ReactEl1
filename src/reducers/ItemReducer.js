@@ -16,6 +16,7 @@ let reducerItem = (state = DEFAULT_STATE, action) => {
         case types.UPDATE_ITEM_REQUEST:
         case types.SEARCH_ITEM_REQUEST:
         case types.PAGINATION_ITEM_REQUEST:
+        case types.SEARCHPAG_ITEM_REQUEST:
             return {
                 ...state,
                 isFetching: true
@@ -30,9 +31,22 @@ let reducerItem = (state = DEFAULT_STATE, action) => {
                 errorMessage: null,
                 listItem: action.payload
             }
-
+        
         case types.PAGINATION_ITEM_SUCCESS:
             console.log("reducer pag..." ,action.payload);
+            return {
+                ...state,
+                isFetching: false,
+                dataFetched: true,
+                error: null,
+                errorMessage: null,
+                listItem: action.payload.listItem,
+                activePage: action.payload.activePage,
+                totalPage: action.payload.totalPage
+            }
+        
+        case types.SEARCHPAG_ITEM_SUCCESS:
+            console.log("reducer searchpag..." ,action.payload);
             return {
                 ...state,
                 isFetching: false,
@@ -60,6 +74,7 @@ let reducerItem = (state = DEFAULT_STATE, action) => {
         case types.UPDATE_ITEM_FAILURE:
         case types.SEARCH_ITEM_FAILURE:
         case types.PAGINATION_ITEM_FAILURE:
+        case types.SEARCHPAG_ITEM_FAILURE:
             return {
                 ...state,
                 isFetching: false,
